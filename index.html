@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=5.0" />
+    <meta name="description" content="exSpark - application for downloading data and managing user information" />
+    <title>exSpark</title>
+
+    <!-- Стили Flatpickr (по необходимости) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <!-- Иконки Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <!-- Подключаем наши стили -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+<div id="webcrumbs">
+    <header>
+        <div class="brand">exSpark</div>
+        <button id="connectButton" class="metamask-button">
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+            <span id="connectText">Connect Wallet</span>
+        </button>
+    </header>
+
+    <!-- Экран загрузки -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="spinner"></div>
+        <p>Uploading data...</p>
+    </div>
+
+    <div class="main-content">
+        <!-- Левая панель (sidebar) -->
+        <nav class="sidebar">
+            <div class="sidebar-btn" id="btnBrowse">
+                <span class="material-symbols-outlined">upload_file</span>
+                <div class="sidebar-btn-label">Upload from a file</div>
+            </div>
+            <div class="sidebar-btn" id="btnUseDefault">
+                <span class="material-symbols-outlined">token</span>
+                <div class="sidebar-btn-label">Test data</div>
+            </div>
+            <div class="sidebar-btn" id="btnShowData">
+                <span class="material-symbols-outlined">visibility</span>
+                <div class="sidebar-btn-label">Show data</div>
+            </div>
+            <div class="sidebar-btn" id="btnClearData">
+                <span class="material-symbols-outlined">clear</span>
+                <div class="sidebar-btn-label">Clear data</div>
+            </div>
+            <div class="sidebar-btn" id="btnAnalytics">
+                <span class="material-symbols-outlined">bar_chart</span>
+                <div class="sidebar-btn-label">Towards analytics</div>
+            </div>
+        </nav>
+
+        <!-- Основная часть: левая колонка (зона дропа + textarea) и правая колонка (таблица) -->
+        <main>
+            <!-- Левая часть: загрузка данных -->
+            <div class="upload-section">
+                <h2>Data to Upload</h2>
+                <div id="dropzone">Drag and drop the data file (JSON) here</div>
+                <textarea id="dataInput" placeholder="JSON-data..."></textarea>
+            </div>
+
+            <!-- Правая часть: таблица загруженных данных -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Uploaded data</h2>
+                    <button class="action-button" id="exportButton">
+                        <span class="material-symbols-outlined">download</span>
+                        Export
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Session ID</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dataTable"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Основной скрипт -->
+<script src="script.js"></script>
+</body>
+</html>

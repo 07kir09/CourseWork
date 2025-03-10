@@ -1,0 +1,14 @@
+{
+  "session_id": "RUN_20240103_002",
+  "user_id": "USER_002",
+  "start_time": "2024-01-03T18:00:00Z",
+  "end_time": "2024-01-03T18:59:16Z",
+  "summary": {
+    "total_distance": 5823,
+    "duration_seconds": 3556,
+    "average_pace": 9.12,
+    "average_heart_rate": 138,
+    "total_calories": 390,
+    "elevation_gain": 45
+  }
+}

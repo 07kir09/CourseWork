@@ -1,0 +1,72 @@
+[
+  {
+    "session_id": "RUN_20240101_001",
+    "user_id": "USER_001",
+    "start_time": "2024-01-01T18:00:00Z",
+    "end_time": "2024-01-01T18:45:00Z",
+    "summary": {
+      "total_distance": 5920,
+      "duration_seconds": 2700,
+      "average_pace": 7.36,
+      "average_heart_rate": 142,
+      "total_calories": 385,
+      "elevation_gain": 64
+    }
+  },
+  {
+    "session_id": "RUN_20240102_002",
+    "user_id": "USER_002",
+    "start_time": "2024-01-02T07:15:00Z",
+    "end_time": "2024-01-02T07:55:00Z",
+    "summary": {
+      "total_distance": 7100,
+      "duration_seconds": 2400,
+      "average_pace": 6.78,
+      "average_heart_rate": 148,
+      "total_calories": 420,
+      "elevation_gain": 80
+    }
+  },
+  {
+    "session_id": "RUN_20240103_003",
+    "user_id": "USER_003",
+    "start_time": "2024-01-03T19:30:00Z",
+    "end_time": "2024-01-03T20:20:00Z",
+    "summary": {
+      "total_distance": 8500,
+      "duration_seconds": 3000,
+      "average_pace": 7.05,
+      "average_heart_rate": 150,
+      "total_calories": 510,
+      "elevation_gain": 95
+    }
+  },
+  {
+    "session_id": "RUN_20240104_004",
+    "user_id": "USER_004",
+    "start_time": "2024-01-04T06:00:00Z",
+    "end_time": "2024-01-04T06:50:00Z",
+    "summary": {
+      "total_distance": 9200,
+      "duration_seconds": 3000,
+      "average_pace": 6.52,
+      "average_heart_rate": 155,
+      "total_calories": 530,
+      "elevation_gain": 120
+    }
+  },
+  {
+    "session_id": "RUN_20240105_005",
+    "user_id": "USER_005",
+    "start_time": "2024-01-05T17:45:00Z",
+    "end_time": "2024-01-05T18:35:00Z",
+    "summary": {
+      "total_distance": 7800,
+      "duration_seconds": 3000,
+      "average_pace": 6.92,
+      "average_heart_rate": 147,
+      "total_calories": 490,
+      "elevation_gain": 100
+    }
+  }
+]

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=5.0" />
+    <title>exSpark - Analytics</title>
+
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="analytics.css" />
+
+    <!-- Иконки Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="analytics-page">
+
+    <main>
+        <!-- В разметке header добавим контейнер для кнопок -->
+        <header>
+            <div class="brand">exSpark - Analytics</div>
+            <div class="header-buttons">
+                <!-- Существующая кнопка Return -->
+                <button class="back-button" id="goBackButton">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Return
+                </button>
+
+                <!-- Новая кнопка Filter (зеленая) -->
+                <button class="filter-button">
+                    <span class="material-symbols-outlined">filter_alt</span>
+                    Filter
+                </button>
+
+                <!-- Новая кнопка 5 days -->
+                <button class="dropdown-button">
+                    5 days
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Блок с двумя графиками (радарный слева, линейный справа) -->
+        <div class="charts-container">
+            <section class="section chart-container">
+                <h2 class="chart-title-left">Analysis of key parameters</h2>
+                <div class="chart-wrapper">
+                    <canvas id="dataChart"></canvas>
+                </div>
+            </section>
+
+            <section class="section chart-container">
+                <h2 class="chart-title-left">Distance by day</h2>
+                <div class="chart-wrapper">
+                    <canvas id="distanceChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <!-- Информация о сессиях (на всю ширину графиков) -->
+        <section class="section session-info">
+            <h2>Session Info</h2>
+            <table id="sessionInfoTable">
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<!-- Подключаем JS -->
+<script src="analytics.js"></script>
+</body>
+</html>

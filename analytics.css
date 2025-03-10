@@ -1,0 +1,275 @@
+/* Сброс */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Заголовок */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.chart-title-left {
+    text-align: left; /* Выравнивание по левому краю */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Контейнер для кнопок в шапке */
+.header-buttons {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+}
+
+/* Стиль для кнопки Filter */
+.filter-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 50px;
+}
+
+.filter-button:hover {
+    background: #dee2e6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.filter-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконка внутри кнопки */
+.filter-button .material-symbols-outlined {
+    font-size: 22px;
+    color: #333;
+}
+
+
+/* Стиль для кнопки Dropdown */
+.dropdown-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 50px;
+}
+
+.dropdown-button:hover {
+    background: #dee2e6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконка для dropdown */
+.dropdown-button .material-symbols-outlined {
+    font-size: 22px;
+    color: #333;
+}
+
+
+/* Кнопка «Вернуться» */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 50px;
+    max-width: 140px;
+}
+
+.back-button:hover {
+    background: #dee2e6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.back-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконка внутри кнопки */
+.back-button .material-symbols-outlined {
+    font-size: 22px;
+    color: #333;
+}
+
+
+
+/* Контейнер для анимации загрузки (если нужно) */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Основное содержимое (по центру) */
+.analytics-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Секция с информацией о сессии */
+#sessionInfoSection {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+#sessionInfoSection h2 {
+    margin-bottom: 12px;
+}
+#sessionInfoTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+#sessionInfoTable th,
+#sessionInfoTable td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+#sessionInfoTable th {
+    background: #f8f9fa;
+}
+
+/* Радарная диаграмма */
+.chart-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.chart-title-right {
+    display: block;
+    text-align: right;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.chart-wrapper {
+    width: 700px;
+    height: 400px;
+    margin: 0 auto; /* Центрируем диаграмму */
+    position: relative;
+}
+
+/* Основной контейнер для графиков (2 колонки) */
+.charts-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Каждый график занимает 50% ширины */
+.chart-container {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Контейнер для canvas (графиков) */
+.chart-wrapper {
+    width: 100%;
+    height: 400px;
+}
+
+/* Таблица Session Info на всю ширину */
+.session-info {
+    grid-column: span 2;
+    background: white;
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
