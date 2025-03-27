@@ -1,203 +1,176 @@
-/* Сброс */
+/* ================================ */
+/*       Сброс и базовые стили      */
+/* ================================ */
+
+/* Сброс: убираем стандартные отступы и задаём box-sizing */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;  /* Размеры элементов включают padding и border */
+    margin: 0;               /* Убираем стандартные внешние отступы */
+    padding: 0;              /* Убираем стандартные внутренние отступы */
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
+    font-family: sans-serif;         /* Основной шрифт страницы */
+    background-color: #f8f9fa;         /* Светлый фон страницы */
+    color: #212529;                    /* Основной цвет текста */
 }
 
 .brand {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2c3e50;
+    font-size: 24px;                   /* Размер шрифта для названия бренда */
+    font-weight: bold;                 /* Жирное начертание */
+    color: #2c3e50;                    /* Цвет бренда */
 }
 
-/* Заголовок */
+/* ================================ */
+/*          Шапка страницы          */
+/* ================================ */
+
+/* Заголовок (header) */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-bottom: 1px solid #dee2e6;
+    display: flex;                     /* Используем flex для выравнивания содержимого */
+    justify-content: space-between;    /* Распределяем элементы по краям (слева и справа) */
+    align-items: center;               /* Выравнивание по вертикали */
+    margin-bottom: 15px;               /* Отступ снизу для разделения с основным контентом */
+    padding: 15px;                     /* Внутренние отступы */
+    border-bottom: 1px solid #dee2e6;   /* Нижняя граница для визуального разделения */
+    background: #fff;
+    border-radius: 8px;
 }
 
+/* Заголовки графиков, выровненные по левому краю */
 .chart-title-left {
-    text-align: left; /* Выравнивание по левому краю */
-    font-weight: 600;
-    margin-bottom: 10px;
+    text-align: left;                  /* Выравнивание по левому краю */
+    font-weight: 600;                  /* Умеренно жирное начертание */
+    margin-bottom: 10px;               /* Отступ снизу */
 }
 
-/* Контейнер для кнопок в шапке */
+/* Контейнер для кнопок в правой части шапки */
 .header-buttons {
-    display: flex;
-    gap: 10px; /* Расстояние между кнопками */
+    display: flex;                     /* Располагаем кнопки в одну строку */
+    gap: 10px;                         /* Расстояние между кнопками */
 }
 
-/* Стиль для кнопки Filter */
-.filter-button {
-    display: inline-flex;
+/* Контейнер для левой части шапки (например, кнопка "Вернуться" и название) */
+.header-left {
+    display: flex;                     /* Элементы располагаются в строку */
+    align-items: center;               /* Выравнивание по вертикали */
+    gap: 10px;                         /* Расстояние между элементами */
+}
+
+/* ================================ */
+/*         Стили кнопок            */
+/* ================================ */
+
+/* Общий стиль для кнопок (Filter, Dropdown, Back, Days) */
+.filter-button,
+.dropdown-button,
+.back-button,
+.days-button {
+    display: inline-flex;             /* Flex-контейнер для выравнивания иконки и текста */
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 12px;
-    background: #e9ecef;
-    color: #333;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-height: 50px;
+    gap: 10px;                        /* Расстояние между иконкой и текстом */
+    padding: 12px 24px;               /* Внутренние отступы */
+    border: none;                     /* Без границ */
+    border-radius: 12px;              /* Скругленные углы */
+    background: #e9ecef;              /* Фоновый цвет кнопки */
+    color: #333;                      /* Цвет текста */
+    font-weight: bold;                /* Жирное начертание */
+    font-size: 16px;                  /* Размер шрифта */
+    cursor: pointer;                  /* Курсор при наведении */
+    transition: all 0.3s ease;        /* Плавное изменение состояния */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для эффекта подъёма */
+    max-height: 50px;                 /* Максимальная высота */
 }
 
-.filter-button:hover {
-    background: #dee2e6;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-}
-
-.filter-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Иконка внутри кнопки */
-.filter-button .material-symbols-outlined {
-    font-size: 22px;
-    color: #333;
-}
-
-
-/* Стиль для кнопки Dropdown */
-.dropdown-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 12px;
-    background: #e9ecef;
-    color: #333;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-height: 50px;
-}
-
-.dropdown-button:hover {
-    background: #dee2e6;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-}
-
-.dropdown-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Иконка для dropdown */
-.dropdown-button .material-symbols-outlined {
-    font-size: 22px;
-    color: #333;
-}
-
-
-/* Кнопка «Вернуться» */
+/* Дополнительное ограничение для кнопки "Вернуться" */
 .back-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 12px;
-    background: #e9ecef;
-    color: #333;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-height: 50px;
-    max-width: 140px;
+    max-width: 140px;                 /* Максимальная ширина для кнопки "Вернуться" */
 }
 
-.back-button:hover {
-    background: #dee2e6;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+/* Состояния наведения и нажатия для кнопок */
+.filter-button:hover,
+.dropdown-button:hover,
+.back-button:hover,
+.days-button:hover {
+    background: #dee2e6;              /* Более светлый фон при наведении */
+    transform: translateY(-2px);      /* Небольшое смещение вверх */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+}
+.filter-button:active,
+.dropdown-button:active,
+.back-button:active,
+.days-button:active {
+    transform: translateY(1px);       /* Смещение вниз при клике */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Уменьшенная тень */
 }
 
-.back-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Иконка внутри кнопки */
-.back-button .material-symbols-outlined {
+/* Стили для иконок внутри кнопок */
+.filter-button .material-symbols-outlined,
+.dropdown-button .material-symbols-outlined,
+.back-button .material-symbols-outlined,
+.days-button .material-symbols-outlined {
     font-size: 22px;
     color: #333;
 }
 
+/* ================================ */
+/*      Экран загрузки и спиннер    */
+/* ================================ */
 
-
-/* Контейнер для анимации загрузки (если нужно) */
+/* Контейнер для анимации загрузки */
 .loading-screen {
-    position: fixed;
+    position: fixed;                   /* Фиксированное позиционирование, чтобы перекрыть весь экран */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
+    width: 100%;                       /* Занимает всю ширину экрана */
+    height: 100%;                      /* Занимает всю высоту экрана */
+    background: rgba(255, 255, 255, 0.9);/* Полупрозрачный белый фон */
+    display: flex;                     /* Flex для центрирования спиннера */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1000;                     /* Поверх всех элементов */
 }
+
 .spinner {
     width: 50px;
     height: 50px;
-    border: 5px solid #ccc;
-    border-top: 5px solid #007bff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    border: 5px solid #ccc;            /* Светлая окантовка */
+    border-top: 5px solid #007bff;      /* Верхняя часть выделена для эффекта вращения */
+    border-radius: 50%;                /* Круглая форма */
+    animation: spin 1s linear infinite;/* Анимация вращения */
 }
+
+/* Ключевые кадры анимации для спиннера */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Основное содержимое (по центру) */
+/* ================================ */
+/*       Основное содержимое        */
+/* ================================ */
+
+/* Контейнер аналитической страницы */
 .analytics-page {
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px;                 /* Максимальная ширина контента */
+    margin: 0 auto;                    /* Центрирование по горизонтали */
     padding: 20px;
 }
 
 main {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column;            /* Располагаем элементы вертикально */
+    gap: 20px;                         /* Отступы между блоками */
 }
 
-/* Секция с информацией о сессии */
+/* Секция информации о сессиях */
 #sessionInfoSection {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Лёгкая тень для "карточного" эффекта */
     margin-bottom: 15px;
 }
 #sessionInfoSection h2 {
@@ -205,7 +178,7 @@ main {
 }
 #sessionInfoTable {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse;         /* Убираем двойные линии между ячейками */
 }
 #sessionInfoTable th,
 #sessionInfoTable td {
@@ -216,7 +189,11 @@ main {
     background: #f8f9fa;
 }
 
-/* Радарная диаграмма */
+/* ================================ */
+/*       Графики и диаграммы        */
+/* ================================ */
+
+/* Контейнер для каждого графика (например, радарной диаграммы) */
 .chart-container {
     background: white;
     padding: 20px;
@@ -227,6 +204,7 @@ main {
     margin-bottom: 20px;
 }
 
+/* Заголовок графика, выровненный справа */
 .chart-title-right {
     display: block;
     text-align: right;
@@ -234,21 +212,22 @@ main {
     margin-bottom: 10px;
 }
 
+/* Обёртка для canvas с диаграммой */
 .chart-wrapper {
     width: 700px;
     height: 400px;
-    margin: 0 auto; /* Центрируем диаграмму */
+    margin: 0 auto; /* Центрирование */
     position: relative;
 }
 
-/* Основной контейнер для графиков (2 колонки) */
+/* Контейнер для размещения графиков в две колонки */
 .charts-container {
     display: flex;
     gap: 20px;
     justify-content: space-between;
 }
 
-/* Каждый график занимает 50% ширины */
+/* Каждый график занимает 50% ширины контейнера */
 .chart-container {
     flex: 1;
     background: white;
@@ -257,13 +236,13 @@ main {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Контейнер для canvas (графиков) */
+/* Обёртка для canvas внутри графиков: растягивается на всю ширину */
 .chart-wrapper {
     width: 100%;
     height: 400px;
 }
 
-/* Таблица Session Info на всю ширину */
+/* Блок с информацией о сессиях (на всю ширину) */
 .session-info {
     grid-column: span 2;
     background: white;
@@ -272,4 +251,253 @@ main {
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     margin-top: 20px;
+}
+
+/* ================================ */
+/*      Выпадающие меню (Dropdown)  */
+/* ================================ */
+
+/* ----- Меню для кнопки Filter (старое) ----- */
+/* (Если требуется, его можно удалить, так как теперь используется боковой drawer) */
+
+/* ================================ */
+/*           Боковая панель         */
+/* ================================ */
+
+/* Полупрозрачный оверлей */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Боковая панель (drawer), выезжает справа */
+.filter-drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;             /* Альтернатива: height: 100%; */
+    right: 0;              /* Прижата к правой стороне */
+    width: 320px;          /* Ширина панели */
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Тень слева от панели */
+    transform: translateX(100%);  /* Изначально скрыта за правой стороной */
+    transition: transform 0.3s ease;
+    z-index: 20;           /* Выше оверлея */
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px 0 0 8px; /* Скругление левой стороны */
+}
+.filter-drawer.active {
+    transform: translateX(0);
+}
+
+/* Заголовок боковой панели */
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f7f7f7, #f1f1f1);
+    padding: 16px;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px 0 0 0;
+}
+.drawer-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Содержимое панели: аккордеон */
+.accordion {
+    flex: 1;                /* Заполняет пространство, чтобы кнопка внизу была всегда у дна */
+    overflow-y: auto;       /* Скролл, если фильтров много */
+    padding: 10px 16px;
+}
+.accordion-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 8px;
+}
+.accordion-toggle {
+    background: none;
+    border: none;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    padding: 6px 0;
+    outline: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.accordion-toggle:hover {
+    color: #007bff;
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    padding-left: 10px;
+}
+.accordion-content.open {
+    opacity: 1;
+    max-height: 300px; /* Достаточно для контента */
+}
+
+/* Стили для числовых фильтров (input[type="number"]) */
+.accordion-content input[type="number"] {
+    width: 80px;
+    padding: 4px 6px;
+    margin: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Стили для категориальных фильтров (чекбоксы) */
+.nice-checkbox {
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.nice-checkbox input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* Кнопка "Применить фильтр" внизу панели */
+.apply-btn {
+    padding: 14px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 0 0 8px;
+    transition: background 0.3s ease;
+}
+.apply-btn:hover {
+    background: #0056c1;
+}
+
+/* ================================ */
+/*       Выпадающее меню "Days"     */
+/* ================================ */
+
+/* Контейнер для кнопки "5 days" */
+.days-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Выпадающее меню для "5 days" */
+.days-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 24px;
+    width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.days-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Стили для списка внутри меню "5 days" */
+.days-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.days-menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+.days-menu li:last-child {
+    border-bottom: none;
+}
+
+/* Стилизация "точечки" (радиокнопка) */
+.days-menu .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    margin-right: 10px;
+}
+.days-menu li.selected .dot {
+    background: #333;
+}
+
+/* ================================ */
+/*       Дополнительные контейнеры */
+/* ================================ */
+
+.container {
+    padding: 20px;
+}
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #e9ecef;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+    transition: background 0.3s ease;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #0056c1;
 }
