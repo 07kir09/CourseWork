@@ -16,29 +16,53 @@
 </head>
 <body>
 <div class="analytics-page">
-
     <main>
-        <!-- В разметке header добавим контейнер для кнопок -->
+        <!-- Шапка (header) -->
         <header>
-            <div class="brand">exSpark - Analytics</div>
-            <div class="header-buttons">
-                <!-- Существующая кнопка Return -->
+            <div class="header-left">
                 <button class="back-button" id="goBackButton">
                     <span class="material-symbols-outlined">arrow_back</span>
                     Return
                 </button>
-
-                <!-- Новая кнопка Filter (зеленая) -->
-                <button class="filter-button">
+                <div class="brand">exSpark - Analytics</div>
+            </div>
+            <div class="header-buttons">
+                <!-- Кнопка, открывающая боковую панель с фильтрами -->
+                <button id="openFilterBtn" class="filter-button">
                     <span class="material-symbols-outlined">filter_alt</span>
                     Filter
                 </button>
 
-                <!-- Новая кнопка 5 days -->
-                <button class="dropdown-button">
-                    5 days
-                    <span class="material-symbols-outlined">expand_more</span>
-                </button>
+                <!-- Блок для отображения активных фильтров (если есть) -->
+                <div id="activeFiltersDisplay" style="display:none;"></div>
+
+                <!-- Кнопка "Days" с выпадающим меню -->
+                <div class="days-container">
+                    <button class="days-button" id="daysButton">
+                        <span class="days-button-text">5 days</span>
+                        <span class="material-symbols-outlined">expand_more</span>
+                    </button>
+                    <div class="days-menu" id="daysMenu">
+                        <ul>
+                            <li data-value="5 days">
+                                <span class="dot"></span>
+                                <span class="option-text">5 days</span>
+                            </li>
+                            <li data-value="10 days">
+                                <span class="dot"></span>
+                                <span class="option-text">10 days</span>
+                            </li>
+                            <li data-value="2 weeks">
+                                <span class="dot"></span>
+                                <span class="option-text">2 weeks</span>
+                            </li>
+                            <li data-value="1 month">
+                                <span class="dot"></span>
+                                <span class="option-text">1 month</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -68,6 +92,77 @@
             </table>
         </section>
     </main>
+</div>
+
+<!-- Оверлей, который затемняет фон -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Боковая панель (drawer), выезжающая справа -->
+<div id="filterDrawer" class="filter-drawer">
+    <div class="drawer-header">
+        <h2>Фильтры</h2>
+        <button id="closeFilterBtn" class="close-btn">&times;</button>
+    </div>
+
+    <!-- Аккордеон с фильтрами -->
+    <div class="accordion">
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Distance (km) -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Distance (km)</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="distanceMin" /></label><br/>
+                <label>До: <input type="number" id="distanceMax" /></label><br/>
+            </div>
+        </div>
+
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Duration (s) -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Duration (s)</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="durationMin" /></label><br/>
+                <label>До: <input type="number" id="durationMax" /></label>
+            </div>
+        </div>
+
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Pace (min/km) -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Pace (min/km)</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="paceMin" /></label><br/>
+                <label>До: <input type="number" id="paceMax" /></label>
+            </div>
+        </div>
+
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Heart Rate (bpm) -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Heart Rate (bpm)</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="heartRateMin" /></label><br/>
+                <label>До: <input type="number" id="heartRateMax" /></label>
+            </div>
+        </div>
+
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Calories -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Calories</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="caloriesMin" /></label><br/>
+                <label>До: <input type="number" id="caloriesMax" /></label>
+            </div>
+        </div>
+
+        <!-- ЧИСЛОВОЙ ФИЛЬТР: Elevation (m) -->
+        <div class="accordion-item">
+            <button class="accordion-toggle">+ Elevation (m)</button>
+            <div class="accordion-content">
+                <label>От: <input type="number" id="elevationMin" /></label><br/>
+                <label>До: <input type="number" id="elevationMax" /></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка внизу "Применить фильтр" -->
+    <button class="apply-btn" id="applyFiltersBtn">Применить фильтр</button>
 </div>
 
 <!-- Подключаем JS -->
