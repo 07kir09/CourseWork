@@ -1,78 +1,90 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Указываем кодировку, настройки отображения и описание для поисковиков -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=5.0" />
     <meta name="description" content="exSpark - application for downloading data and managing user information" />
     <title>exSpark</title>
 
-    <!-- Стили Flatpickr (по необходимости) -->
+    <!-- Подключение стилей Flatpickr для календарей (если потребуется) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-    <!-- Иконки Material Symbols -->
+    <!-- Подключение иконок Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <!-- Подключаем наши стили -->
+    <!-- Подключение пользовательских стилей -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 <div id="webcrumbs">
     <header>
+        <!-- Логотип или название бренда -->
         <div class="brand">exSpark</div>
+        <!-- Кнопка для подключения криптокошелька (например, MetaMask) -->
         <button id="connectButton" class="metamask-button">
             <span class="material-symbols-outlined">account_balance_wallet</span>
             <span id="connectText">Connect Wallet</span>
         </button>
     </header>
 
-    <!-- Экран загрузки -->
+    <!-- Экран загрузки, который отображается во время обработки данных -->
     <div class="loading-screen" id="loadingScreen">
         <div class="spinner"></div>
         <p>Uploading data...</p>
     </div>
 
     <div class="main-content">
-        <!-- Левая панель (sidebar) -->
+        <!-- Боковая панель с кнопками для навигации по функциям приложения -->
         <nav class="sidebar">
+            <!-- Кнопка для загрузки данных из файла -->
             <div class="sidebar-btn" id="btnBrowse">
                 <span class="material-symbols-outlined">upload_file</span>
                 <div class="sidebar-btn-label">Upload from a file</div>
             </div>
+            <!-- Кнопка для использования тестовых данных -->
             <div class="sidebar-btn" id="btnUseDefault">
                 <span class="material-symbols-outlined">token</span>
                 <div class="sidebar-btn-label">Test data</div>
             </div>
+            <!-- Кнопка для отображения загруженных данных -->
             <div class="sidebar-btn" id="btnShowData">
                 <span class="material-symbols-outlined">visibility</span>
                 <div class="sidebar-btn-label">Show data</div>
             </div>
+            <!-- Кнопка для очистки данных -->
             <div class="sidebar-btn" id="btnClearData">
                 <span class="material-symbols-outlined">clear</span>
                 <div class="sidebar-btn-label">Clear data</div>
             </div>
+            <!-- Кнопка для перехода к аналитике данных -->
             <div class="sidebar-btn" id="btnAnalytics">
                 <span class="material-symbols-outlined">bar_chart</span>
                 <div class="sidebar-btn-label">Towards analytics</div>
             </div>
         </nav>
 
-        <!-- Основная часть: левая колонка (зона дропа + textarea) и правая колонка (таблица) -->
+        <!-- Основной контент страницы, разделённый на две части -->
         <main>
-            <!-- Левая часть: загрузка данных -->
+            <!-- Левая колонка: зона для загрузки данных -->
             <div class="upload-section">
                 <h2>Data to Upload</h2>
+                <!-- Область для перетаскивания файла с данными (JSON) -->
                 <div id="dropzone">Drag and drop the data file (JSON) here</div>
+                <!-- Текстовое поле для ввода данных в формате JSON -->
                 <textarea id="dataInput" placeholder="JSON-data..."></textarea>
             </div>
 
-            <!-- Правая часть: таблица загруженных данных -->
+            <!-- Правая колонка: таблица для отображения загруженных данных -->
             <section class="section">
                 <div class="section-header">
                     <h2>Uploaded data</h2>
+                    <!-- Кнопка для экспорта данных -->
                     <button class="action-button" id="exportButton">
                         <span class="material-symbols-outlined">download</span>
                         Export
                     </button>
                 </div>
+                <!-- Таблица с данными: заголовки столбцов для идентификатора сессии и деталей -->
                 <table>
                     <thead>
                     <tr>
@@ -80,6 +92,7 @@
                         <th>Details</th>
                     </tr>
                     </thead>
+                    <!-- Тело таблицы, куда будут динамически загружаться данные -->
                     <tbody id="dataTable"></tbody>
                 </table>
             </section>
@@ -87,7 +100,7 @@
     </div>
 </div>
 
-<!-- Основной скрипт -->
+<!-- Подключение основного JavaScript файла для работы функционала страницы -->
 <script src="script.js"></script>
 </body>
 </html>
