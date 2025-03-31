@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Основные метаданные страницы -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=5.0" />
     <title>exSpark - Analytics</title>
 
-    <!-- Подключаем CSS -->
+    <!-- Подключение CSS для страницы аналитики -->
     <link rel="stylesheet" href="analytics.css" />
 
-    <!-- Иконки Material Symbols -->
+    <!-- Подключение иконок Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
-    <!-- Chart.js -->
+    <!-- Подключение Chart.js для построения диаграмм -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+<!-- Основной контейнер страницы аналитики -->
 <div class="analytics-page">
     <main>
-        <!-- Шапка (header) -->
+        <!-- Шапка страницы -->
         <header>
             <div class="header-left">
+                <!-- Кнопка "Вернуться" для возврата на главную страницу -->
                 <button class="back-button" id="goBackButton">
                     <span class="material-symbols-outlined">arrow_back</span>
                     Return
                 </button>
+                <!-- Логотип или название страницы -->
                 <div class="brand">exSpark - Analytics</div>
             </div>
             <div class="header-buttons">
-                <!-- Кнопка, открывающая боковую панель с фильтрами -->
+                <!-- Кнопка для открытия панели фильтров -->
                 <button id="openFilterBtn" class="filter-button">
                     <span class="material-symbols-outlined">filter_alt</span>
                     Filter
                 </button>
 
-                <!-- Блок для отображения активных фильтров (если есть) -->
+                <!-- Блок для отображения активных фильтров (скрыт по умолчанию) -->
                 <div id="activeFiltersDisplay" style="display:none;"></div>
 
-                <!-- Кнопка "Days" с выпадающим меню -->
+                <!-- Блок выбора периода для фильтрации по дате -->
                 <div class="days-container">
                     <button class="days-button" id="daysButton">
-                        <span class="days-button-text">5 days</span>
+                        <span class="days-button-text">Period</span>
                         <span class="material-symbols-outlined">expand_more</span>
                     </button>
+                    <!-- Выпадающее меню с вариантами периода -->
                     <div class="days-menu" id="daysMenu">
                         <ul>
                             <li data-value="5 days">
@@ -60,14 +65,19 @@
                                 <span class="dot"></span>
                                 <span class="option-text">1 month</span>
                             </li>
+                            <li data-value="All dates">
+                                <span class="dot"></span>
+                                <span class="option-text">All dates</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Блок с двумя графиками (радарный слева, линейный справа) -->
+        <!-- Контейнер для диаграмм -->
         <div class="charts-container">
+            <!-- Раздел с радарной диаграммой для анализа ключевых параметров -->
             <section class="section chart-container">
                 <h2 class="chart-title-left">Analysis of key parameters</h2>
                 <div class="chart-wrapper">
@@ -75,6 +85,7 @@
                 </div>
             </section>
 
+            <!-- Раздел с диаграммой "Distance by day" -->
             <section class="section chart-container">
                 <h2 class="chart-title-left">Distance by day</h2>
                 <div class="chart-wrapper">
@@ -83,30 +94,32 @@
             </section>
         </div>
 
-        <!-- Информация о сессиях (на всю ширину графиков) -->
+        <!-- Раздел с информацией о сессиях -->
         <section class="section session-info">
             <h2>Session Info</h2>
             <table id="sessionInfoTable">
                 <tbody>
+                <!-- Данные о сессиях будут динамически добавляться сюда -->
                 </tbody>
             </table>
         </section>
     </main>
 </div>
 
-<!-- Оверлей, который затемняет фон -->
+<!-- Оверлей для затемнения фона при открытии панели фильтров -->
 <div id="overlay" class="overlay"></div>
 
-<!-- Боковая панель (drawer), выезжающая справа -->
+<!-- Боковая панель с фильтрами -->
 <div id="filterDrawer" class="filter-drawer">
     <div class="drawer-header">
-        <h2>Фильтры</h2>
+        <h2>Filters</h2>
+        <!-- Кнопка закрытия панели фильтров -->
         <button id="closeFilterBtn" class="close-btn">&times;</button>
     </div>
 
-    <!-- Аккордеон с фильтрами -->
+    <!-- Аккордеон с числовыми фильтрами -->
     <div class="accordion">
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Distance (km) -->
+        <!-- Фильтр для Distance (km) -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Distance (km)</button>
             <div class="accordion-content">
@@ -115,7 +128,7 @@
             </div>
         </div>
 
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Duration (s) -->
+        <!-- Фильтр для Duration (s) -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Duration (s)</button>
             <div class="accordion-content">
@@ -124,7 +137,7 @@
             </div>
         </div>
 
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Pace (min/km) -->
+        <!-- Фильтр для Pace (min/km) -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Pace (min/km)</button>
             <div class="accordion-content">
@@ -133,7 +146,7 @@
             </div>
         </div>
 
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Heart Rate (bpm) -->
+        <!-- Фильтр для Heart Rate (bpm) -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Heart Rate (bpm)</button>
             <div class="accordion-content">
@@ -142,7 +155,7 @@
             </div>
         </div>
 
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Calories -->
+        <!-- Фильтр для Calories -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Calories</button>
             <div class="accordion-content">
@@ -151,7 +164,7 @@
             </div>
         </div>
 
-        <!-- ЧИСЛОВОЙ ФИЛЬТР: Elevation (m) -->
+        <!-- Фильтр для Elevation (m) -->
         <div class="accordion-item">
             <button class="accordion-toggle">+ Elevation (m)</button>
             <div class="accordion-content">
@@ -161,11 +174,14 @@
         </div>
     </div>
 
-    <!-- Кнопка внизу "Применить фильтр" -->
-    <button class="apply-btn" id="applyFiltersBtn">Применить фильтр</button>
+    <!-- Кнопка для сброса всех фильтров -->
+    <button class="apply-btn" id="resetFiltersBtn">Reset filter</button>
+
+    <!-- Кнопка для применения выбранных фильтров -->
+    <button class="apply-btn" id="applyFiltersBtn">Apply filter</button>
 </div>
 
-<!-- Подключаем JS -->
+<!-- Подключение JS для аналитики -->
 <script src="analytics.js"></script>
 </body>
 </html>
