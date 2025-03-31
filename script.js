@@ -1,15 +1,17 @@
 /************************************
  * ИМИТАЦИЯ ЗАГРУЗКИ
+ * Скрываем экран загрузки через 1 секунду после загрузки страницы.
  ************************************/
 window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const loadingScreen = document.getElementById('loadingScreen');
-        if (loadingScreen) loadingScreen.style.display = 'none';
+        if (loadingScreen) loadingScreen.style.display = 'none'; // Скрываем загрузочный экран
     }, 1000);
 });
 
 /************************************
  * META MASK (если нужно)
+ * Обеспечиваем подключение MetaMask: при клике отправляем запрос на получение аккаунтов.
  ************************************/
 const connectButton = document.getElementById('connectButton');
 const connectText = document.getElementById('connectText');
@@ -18,9 +20,11 @@ if (connectButton) {
     connectButton.addEventListener('click', async () => {
         if (typeof window.ethereum !== 'undefined') {
             try {
+                // Запрос аккаунтов через MetaMask
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                 if (accounts.length > 0) {
                     const account = accounts[0];
+                    // Отображаем укороченный адрес кошелька
                     connectText.textContent = `${account.slice(0, 6)}...${account.slice(-4)}`;
                 }
             } catch (error) {
@@ -35,28 +39,29 @@ if (connectButton) {
 
 /************************************
  * ЭЛЕМЕНТЫ UI
+ * Получаем основные элементы страницы: поля для ввода, таблицу, область дропа, кнопки боковой панели.
  ************************************/
-const dataInput = document.getElementById('dataInput');
-const dataTable = document.getElementById('dataTable');
-const dropzone = document.getElementById('dropzone');
+const dataInput = document.getElementById('dataInput'); // Текстовое поле для JSON
+const dataTable = document.getElementById('dataTable'); // Таблица для отображения данных
+const dropzone = document.getElementById('dropzone');   // Область для перетаскивания файла
 
-// Кнопки на sidebar
+// Кнопки боковой панели
 const btnBrowse = document.getElementById('btnBrowse');
 const btnUseDefault = document.getElementById('btnUseDefault');
 const btnShowData = document.getElementById('btnShowData');
 const btnClearData = document.getElementById('btnClearData');
 const btnAnalytics = document.getElementById('btnAnalytics');
 
-// Скрытый input для загрузки файла
+// Создаем скрытый input для загрузки файла (появляется при клике на "Загрузить из файла")
 const fileInput = document.createElement('input');
 fileInput.type = 'file';
 fileInput.style.display = 'none';
 document.body.appendChild(fileInput);
 
-// Кнопка export
+// Кнопка для экспорта данных
 const exportButton = document.getElementById('exportButton');
 
-// Тестовые данные
+// Пример тестовых данных
 const defaultData = {
     "session_id": "RUN_20240101_001",
     "user_id": "USER_001",
@@ -77,12 +82,13 @@ let loadedData = null;
 
 /************************************
  * DRAG & DROP
+ * Обрабатываем события перетаскивания файла в область dropzone.
  ************************************/
 dropzone.addEventListener('dragenter', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dropzone.style.borderColor = '#4dabf7';
-    dropzone.textContent = 'Release the file...';
+    dropzone.style.borderColor = '#4dabf7'; // Изменяем цвет рамки при наведении файла
+    dropzone.textContent = 'Release the file...'; // Подсказка для пользователя
 });
 
 dropzone.addEventListener('dragover', (e) => {
@@ -93,8 +99,8 @@ dropzone.addEventListener('dragover', (e) => {
 dropzone.addEventListener('dragleave', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dropzone.style.borderColor = '#ccc';
-    dropzone.textContent = 'Drag and drop the data file (JSON) here';
+    dropzone.style.borderColor = '#ccc'; // Возвращаем исходный цвет рамки
+    dropzone.textContent = 'Drag and drop the data file (JSON) here'; // Восстанавливаем текст
 });
 
 dropzone.addEventListener('drop', (e) => {
@@ -112,6 +118,7 @@ dropzone.addEventListener('drop', (e) => {
     const reader = new FileReader();
     reader.onload = (ev) => {
         try {
+            // Парсим содержимое файла как JSON и форматируем его для отображения
             const jsonData = JSON.parse(ev.target.result);
             dataInput.value = JSON.stringify(jsonData, null, 2);
             dropzone.textContent = 'The file is uploaded!';
@@ -125,10 +132,11 @@ dropzone.addEventListener('drop', (e) => {
 
 /************************************
  * ОБРАБОТЧИКИ КНОПОК (SIDEBAR)
+ * Определяем действия при нажатии на кнопки боковой панели.
  ************************************/
-// (1) Загрузить из файла
+// (1) Загрузить данные из файла через диалог выбора
 btnBrowse.addEventListener('click', () => {
-    fileInput.click();
+    fileInput.click(); // Инициируем выбор файла
 });
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -136,6 +144,7 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onload = (ev) => {
         try {
+            // Обработка и вывод JSON из выбранного файла
             const jsonData = JSON.parse(ev.target.result);
             dataInput.value = JSON.stringify(jsonData, null, 2);
             dropzone.textContent = 'Файл загружен!';
@@ -147,13 +156,13 @@ fileInput.addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
-// (2) Тестовые данные
+// (2) Использовать тестовые данные для заполнения текстового поля
 btnUseDefault.addEventListener('click', () => {
     dataInput.value = JSON.stringify(defaultData, null, 2);
     dropzone.textContent = 'Файл загружен!';
 });
 
-// (3) Показать данные
+// (3) Показать данные: парсим JSON из текстового поля и отрисовываем таблицу
 btnShowData.addEventListener('click', () => {
     try {
         loadedData = JSON.parse(dataInput.value);
@@ -163,7 +172,7 @@ btnShowData.addEventListener('click', () => {
     }
 });
 
-// (4) Очистить данные
+// (4) Очистить данные: очищаем текстовое поле, таблицу и сбрасываем переменную с данными
 btnClearData.addEventListener('click', () => {
     dataInput.value = '';
     dataTable.innerHTML = '';
@@ -171,7 +180,7 @@ btnClearData.addEventListener('click', () => {
     dropzone.textContent = 'Перетащите сюда файл с данными (JSON)';
 });
 
-// (5) Перейти к аналитике
+// (5) Перейти к аналитике: если данные загружены, сохраняем их в localStorage и переходим на другую страницу
 btnAnalytics.addEventListener('click', () => {
     if (!loadedData) {
         alert('Нет данных. Сначала загрузите или вставьте JSON.');
@@ -183,6 +192,7 @@ btnAnalytics.addEventListener('click', () => {
 
 /************************************
  * EXPORT
+ * Экспортируем загруженные данные в JSON файл.
  ************************************/
 exportButton.addEventListener('click', () => {
     if (!loadedData) {
@@ -190,6 +200,7 @@ exportButton.addEventListener('click', () => {
         return;
     }
 
+    // Создаем Blob с данными и генерируем ссылку для скачивания файла
     const blob = new Blob([JSON.stringify(loadedData, null, 2)], {
         type: 'application/json'
     });
@@ -198,15 +209,16 @@ exportButton.addEventListener('click', () => {
     a.href = url;
     a.download = 'exported-data.json';
     document.body.appendChild(a);
-    a.click();
+    a.click(); // Инициируем скачивание
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(url); // Очищаем выделенный URL
 });
 
 /************************************
- * РЕНДЕР ТАБЛИЦЫ
+ * РЕНДЕР ТАБЛИЦЫ (БЛОК 1)
+ * Функции для отображения данных в виде таблицы с возможностью раскрытия вложенных полей.
  ************************************/
-// Функция для рендеринга одного поля (включая вложенные объекты)
+// Функция для отрисовки одного поля данных с поддержкой вложенных объектов
 function renderField(key, value) {
     const tr = document.createElement('tr');
     const tdKey = document.createElement('td');
@@ -214,6 +226,7 @@ function renderField(key, value) {
     const tdValue = document.createElement('td');
 
     if (typeof value === 'object' && value !== null) {
+        // Если значение является объектом, создаем вложенную таблицу для его полей
         const nestedTable = document.createElement('table');
         for (const nestedKey in value) {
             nestedTable.appendChild(renderField(nestedKey, value[nestedKey]));
@@ -228,7 +241,7 @@ function renderField(key, value) {
     return tr;
 }
 
-// Функция для рендеринга одной сессии
+// Функция для отрисовки сессии с возможностью раскрытия деталей
 function renderSession(session) {
     const tr = document.createElement('tr');
     const tdSessionId = document.createElement('td');
@@ -236,13 +249,15 @@ function renderSession(session) {
 
     const tdDetails = document.createElement('td');
     const button = document.createElement('button');
-    button.textContent = '+';
+    button.textContent = '+'; // Кнопка для раскрытия деталей
     button.className = 'expand-button';
 
+    // Контейнер для скрытых деталей сессии
     const detailsDiv = document.createElement('div');
     detailsDiv.className = 'details';
     detailsDiv.style.display = 'none';
 
+    // Вложенная таблица для отображения остальных полей сессии
     const detailsTable = document.createElement('table');
     for (const key in session) {
         if (key !== 'session_id') {
@@ -257,6 +272,7 @@ function renderSession(session) {
     tr.appendChild(tdSessionId);
     tr.appendChild(tdDetails);
 
+    // Переключение состояния отображения деталей сессии по клику на кнопку
     button.addEventListener('click', () => {
         if (detailsDiv.style.display === 'none') {
             detailsDiv.style.display = 'block';
@@ -271,9 +287,10 @@ function renderSession(session) {
 }
 
 /************************************
- * РЕНДЕР ТАБЛИЦЫ
+ * РЕНДЕР ТАБЛИЦЫ (БЛОК 2)
+ * Альтернативная версия функций рендера с измененным оформлением.
  ************************************/
-// Функция для рендеринга одного поля (включая вложенные объекты)
+// Функция для отрисовки одного поля данных (аналогичная предыдущей)
 function renderField(key, value) {
     const tr = document.createElement('tr');
     const tdKey = document.createElement('td');
@@ -295,7 +312,7 @@ function renderField(key, value) {
     return tr;
 }
 
-// Функция для рендеринга одной сессии
+// Функция для отрисовки сессии с более гибким оформлением и кнопкой-раскрытием
 function renderSession(session) {
     const tr = document.createElement('tr');
     const tdSessionId = document.createElement('td');
@@ -303,7 +320,7 @@ function renderSession(session) {
     button.textContent = '+';
     button.className = 'expand-button';
 
-    // Обертка для выравнивания кнопки и текста
+    // Контейнер для кнопки и идентификатора сессии, для выравнивания элементов
     const sessionContainer = document.createElement('div');
     sessionContainer.style.display = 'flex';
     sessionContainer.style.alignItems = 'center';
@@ -343,19 +360,19 @@ function renderSession(session) {
     dataTable.appendChild(tr);
 }
 
-// Основная функция рендеринга таблицы
+// Основная функция для рендера таблицы на основе загруженных данных
 function renderDataTable(data) {
-    dataTable.innerHTML = '';
+    dataTable.innerHTML = ''; // Очищаем таблицу перед загрузкой новых данных
 
     if (Array.isArray(data)) {
+        // Если данных несколько (массив сессий), обрабатываем каждую сессию
         data.forEach(session => {
             renderSession(session);
         });
     } else if (typeof data === 'object' && data !== null) {
+        // Если данные представляют собой одну сессию
         renderSession(data);
     } else {
         alert('Невалидные данные!');
     }
 }
-
-
