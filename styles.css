@@ -1,22 +1,25 @@
-/* Сброс */
+/* Сброс стилей для всех элементов */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Основные стили для body: шрифт, фон и цвет текста */
 body {
     font-family: sans-serif;
     background-color: #f8f9fa;
     color: #212529;
 }
 
+/* Стили для логотипа/названия бренда */
 .brand {
     font-size: 24px;
     font-weight: bold;
     color: #2c3e50;
 }
 
+/* Стили для шапки страницы: выравнивание элементов, отступы и нижняя граница */
 header {
     display: flex;
     justify-content: space-between;
@@ -26,7 +29,7 @@ header {
     border-bottom: 1px solid #dee2e6;
 }
 
-/* Кнопка «Вернуться» */
+/* Стили для кнопки «Вернуться» */
 .back-button {
     display: inline-flex;
     align-items: center;
@@ -47,7 +50,7 @@ header {
     transform: translateY(-1px);
 }
 
-/* Радарная диаграмма */
+/* Стили для контейнера радарной диаграммы */
 .chart-container {
     margin: 30px auto;
     position: relative;
@@ -60,7 +63,7 @@ header {
     position: relative;
 }
 
-/* Экран загрузки */
+/* Стили для экрана загрузки: полупрозрачный фон, центрирование контента и z-index */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -74,6 +77,8 @@ header {
     align-items: center;
     z-index: 1000;
 }
+
+/* Стили для спиннера на экране загрузки с анимацией вращения */
 .spinner {
     width: 50px;
     height: 50px;
@@ -87,7 +92,7 @@ header {
     100% { transform: rotate(360deg); }
 }
 
-/* Основная сетка: 3 колонки: sidebar (80px), 2 колонки для контента */
+/* Основная сетка страницы: 3 колонки (sidebar и 2 колонки для контента) */
 .main-content {
     display: grid;
     grid-template-columns: 80px 1fr 1fr;
@@ -97,7 +102,7 @@ header {
     padding: 0 15px 30px;
 }
 
-/* Левая панель (sidebar) */
+/* Стили для боковой панели (sidebar) */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -106,7 +111,7 @@ header {
     position: relative;
 }
 
-/* Кнопка с иконкой */
+/* Стили для кнопок в sidebar: квадратные кнопки с иконками */
 .sidebar-btn {
     position: relative;
     display: flex;
@@ -126,14 +131,14 @@ header {
     z-index: 2;
 }
 
-/* Иконка */
+/* Стили для иконок в кнопках */
 .sidebar-btn span.material-symbols-outlined {
     font-size: 24px;
     z-index: 2;
     position: relative;
 }
 
-/* Всплывающая подпись */
+/* Стили для всплывающих подсказок (лейблов) на кнопках sidebar */
 .sidebar-btn-label {
     position: absolute;
     left: calc(100% + 10px);
@@ -156,7 +161,7 @@ header {
     transform: translateY(-50%) scale(1.05);
 }
 
-/* Основной контент (2 колонки) */
+/* Стили для основного контента: две колонки для загрузки и таблицы данных */
 main {
     grid-column: span 2;
     display: grid;
@@ -165,7 +170,7 @@ main {
     min-height: 600px;
 }
 
-/* Левая часть (зона дропа + textarea) */
+/* Стили для левой части контента: зона дропа и текстовое поле */
 .upload-section {
     display: flex;
     flex-direction: column;
@@ -189,7 +194,7 @@ main {
     border: 1px solid #dee2e6;
 }
 
-/* Таблица справа */
+/* Стили для правой части: секция с таблицей загруженных данных */
 .section {
     background: none;
     box-shadow: none;
@@ -223,7 +228,7 @@ tr:hover {
     background: #f1f3f5;
 }
 
-/* Стили для кнопок развертывания */
+/* Стили для кнопок разворачивания деталей в таблице */
 .expand-button {
     background: #e9ecef;
     border: 1px solid #dee2e6;
@@ -247,23 +252,23 @@ tr:hover {
     transform: scale(1.05);
 }
 
-/* Стили для контейнера сессии */
+/* Стили для контейнера сессии внутри таблицы */
 td > div {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Стили для контейнера деталей */
+/* Стили для контейнера с подробными данными (деталями) сессии */
 .details {
     margin-top: 10px;
-    margin-left: 50px; /* Учитываем ширину кнопки + отступ */
+    margin-left: 50px; /* Учитываем ширину кнопки и отступ */
 }
 
-/* Стили для вложенных таблиц */
+/* Стили для вложенных таблиц в блоке деталей */
 .details table {
-    width: calc(100% - 50px); /* Уменьшаем ширину, чтобы учесть margin-left */
-    margin-left: 0; /* Убираем дополнительный отступ, так как он уже задан в .details */
+    width: calc(100% - 50px); /* Учитываем левый отступ */
+    margin-left: 0;
     border-collapse: collapse;
     background: #f8f9fa;
 }
@@ -275,7 +280,7 @@ td > div {
     background: #e9ecef;
 }
 
-/* Кнопки Export */
+/* Стили для кнопки экспорта данных */
 .action-button {
     display: inline-flex;
     align-items: center;
@@ -293,7 +298,7 @@ td > div {
     transform: translateY(-1px);
 }
 
-/* Кнопка MetaMask */
+/* Стили для кнопки подключения MetaMask */
 #connectButton.metamask-button {
     display: inline-flex;
     align-items: center;
@@ -312,7 +317,7 @@ td > div {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Адаптивность */
+/* Адаптивные стили для устройств с шириной экрана до 992px */
 @media (max-width: 992px) {
     .main-content {
         grid-template-columns: 60px 1fr;
@@ -324,11 +329,11 @@ td > div {
         margin-left: 0; /* Убираем отступ для меньших экранов */
     }
     .details table {
-        width: 100%; /* Полная ширина на маленьких экранах */
+        width: 100%; /* Полная ширина вложенной таблицы */
     }
 }
 
-/* Таблицы, секции, прочее */
+/* Дополнительные стили для секций и таблиц */
 section.section {
     margin-bottom: 20px;
 }
